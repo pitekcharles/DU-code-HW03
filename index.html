@@ -114,6 +114,13 @@
 			    passwordChar[i] = passwordChar[j]
 			    passwordChar[j] = temp
 		    }
+
+            for (var i = 0; i < passwordChar.length; i++) {
+                password = password + passwordChar[i]
+            }
+
+            alert("Your password is: " + password + "Password length: " + passwordChar.length)
+
     </script>
 </body>
 </html>
