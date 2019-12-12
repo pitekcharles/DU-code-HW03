@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Password Generator</title>
 </head>
+
 <body>
     <script>
         var lowerChar = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
@@ -17,10 +19,6 @@
         var numSelect = 0
         var passwordChar = []
         var password = ""
-        var numLower
-        var numUpper
-        var numSpc
-        var numNum
 
         function pullCharArr(num, arr) {
             for (var i = 0; i < num; i++) {
@@ -40,87 +38,180 @@
         while (numSelect === 0) {
             alert("If you do not select at least 1 character type you will be forced to go back through the choices until you select at least 1")
             var lower = confirm("Do you want to include lower case characters?")
-            if(lower === true){
+            if (lower === true) {
                 numSelect++
             }
             var upper = confirm("Do you want to include upper case characters?")
-            if(upper === true){
+            if (upper === true) {
                 numSelect++
             }
             var num = confirm("Do you want to include number characters?")
-            if(num === true){
+            if (num === true) {
                 numSelect++
             }
             var spc = confirm("Do you want to include special characters?")
-            if(spc === true){
+            if (spc === true) {
                 numSelect++
             }
         }
 
-        //-----------------------------------------------------------------------------------------------------------
-        // THIS SECTION!!! trying to  set up distribution of characters of each type. 
-        //program will generate the password but sometimes adds extra characters so input was 13 
-        //printed password will be 15 characters long. will still be playing with this will likely need to be changed
-        // ----------------------------------------------------------------------------------------------------------
+        var midNum = totalChar / numSelect
+        var remainder = totalChar % numSelect
+        var minExtra = (totalChar - remainder) / numSelect
 
-        if (lower === true) {
-                numLower = Math.ceil(totalChar / numSelect)
-                console.log(numLower)
-                if (upper === true) {
-                    numUpper = Math.floor(totalChar / numSelect)
-                    if (num === true) {
-                        numNum = Math.ceil(totalChar / numSelect)
-                        if (spc === true) {
-                            numSpc = Math.ceil(totalChar / numSelect)
-                        } 
-                    } else if (spc === true) {
-                        numSpc = Math.ceil(totalChar / numSelect)
-                    } 
-                } else if (num === true) {
-                    numNum = Math.floor(totalChar / numSelect)
-                    if (spc === true) {
-                        numSpc = Math.ceil(totalChar / numSelect)
-                    }
-                } else if (spc === true) {
-                    numSpc = Math.floor(totalChar / numSelect)
-                } else {}
-            } else if (upper === true) {
-                numUpper = Math.ceil(totalChar / numSelect)
-                if (num === true) {
-                    numNum = Math.floor(totalChar / numSelect)
-                    if (spc === true) {
-                        numSpc = Math.ceil(totalChar / numSelect)
-                    }
-                } else if (spc === true) {
-                    numSpc = Math.floor(totalChar / numSelect)
-                }
-            } else if (num === true) {
-                numNum = Math.ceil(totalChar / numSelect)
-                if (spc === true) {
-                    numSpc = Math.floor(totalChar / numSelect)
-                }
+
+        var numLower = minExtra
+        var numUpper = minExtra
+        var numSpc = minExtra
+        var numNum = minExtra
+
+        if (lower === true && upper === true && num === true && spc === true) {
+            if (remainder === 1) {
+                numLower++
+            } else if (remainder === 2) {
+                numLower++
+                numUpper++
+            } else if (remainder === 3) {
+                numLower++
+                numUpper++
+                numSpc++
+            } else { }
+        } else if (upper === true && num === true && spc === true) {
+            if (remainder === 1) {
+                numNum++
+                numLower = 0
+            } else if (remainder === 2) {
+                numNum++
+                numUpper++
+                numLower = 0
             } else {
-                numSpc = Math.ceil(totalChar / numSelect)
-            } 
-
-            pullCharArr(numLower, lowerChar)
-            pullCharArr(numUpper, upperChar)
-            pullCharArr(numNum, numChar)
-            pullCharArr(numSpc, spcChar)
-
-            for(let i = (passwordChar.length - 1); i > 0; i--) {
-			    const j = Math.floor(Math.random() * i)
-			    const temp = passwordChar[i]
-			    passwordChar[i] = passwordChar[j]
-			    passwordChar[j] = temp
-		    }
-
-            for (var i = 0; i < passwordChar.length; i++) {
-                password = password + passwordChar[i]
+                numLower = 0
             }
+        } else if (lower === true && num === true && spc === true) {
+            if (remainder === 1) {
+                numLower++
+                numUpper = 0
+            } else if (remainder === 2) {
+                numLower++
+                numNum++
+                numUpper = 0
+            } else {
+                numUpper = 0
+            }
+        } else if (lower === true && upper === true && spc === true) {
+            if (remainder === 1) {
+                numLower++
+                numNum = 0
+            } else if (remainder === 2) {
+                numLower++
+                numUpper++
+                numNum = 0
+            } else {
+                numNum = 0
+            }
+        } else if (lower === true && upper === true && num === true) {
+            if (remainder === 1) {
+                numLower++
+                numSpc = 0
+            } else if (remainder === 2) {
+                numLower++
+                numUpper++
+                numSpc = 0
+            } else {
+                numSpc = 0
+            }
+        } else if (num === true && spc === true) {
+            if (remainder === 1) {
+                numNum++
+                numLower = 0
+                numUpper = 0
+            } else {
+                numLower = 0
+                numUpper = 0
+            }
+        } else if (lower === true && upper === true) {
+            if (remainder === 1) {
+                numLower++
+                numNum = 0
+                numSpc = 0
+            } else {
+                numNum = 0
+                numSpc = 0
+            }
+        } else if (upper === true && num === true) {
+            if (remainder === 1) {
+                numUpper++
+                numLower = 0
+                numSpc = 0
+            } else {
+                numLower = 0
+                numSpc = 0
+            }
+        } else if (lower === true && num === true) {
+            if (remainder === 1) {
+                numLower++
+                numUpper = 0
+                numSpc = 0
+            } else {
+                numUpper = 0
+                numSpc = 0
+            }
+        } else if (lower === true && spc === true) {
+            if (remainder === 1) {
+                numLower++
+                numUpper = 0
+                numNum = 0
+            } else {
+                numUpper = 0
+                numNum = 0
+            }
+        } else if (upper === true && spc === true) {
+            if (remainder === 1) {
+                numUpper++
+                numLower = 0
+                numNum = 0
+            } else {
+                numLower = 0
+                numNum = 0
+            }
+        } else if (lower === true) {
+            numUpper = 0
+            numNum = 0
+            numSpc = 0
+        } else if (upper === true) {
+            numLower = 0
+            numNum = 0
+            numSpc = 0
+        } else if (num === true) {
+            numLower = 0
+            numUpper = 0
+            numSpc = 0
+        } else if (spc === true) {
+            numLower = 0
+            numUpper = 0
+            numNum = 0
+        } else { }
 
-            alert("Your password is: " + password + "Password length: " + passwordChar.length)
+
+        pullCharArr(numLower, lowerChar)
+        pullCharArr(numUpper, upperChar)
+        pullCharArr(numNum, numChar)
+        pullCharArr(numSpc, spcChar)
+
+        for (let i = (passwordChar.length - 1); i > 0; i--) {
+            const j = Math.floor(Math.random() * i)
+            const temp = passwordChar[i]
+            passwordChar[i] = passwordChar[j]
+            passwordChar[j] = temp
+        }
+
+        for (var i = 0; i < passwordChar.length; i++) {
+            password = password + passwordChar[i]
+        }
+
+        alert("Your password is: " + password + "    Password length: " + passwordChar.length)
 
     </script>
 </body>
+
 </html>
