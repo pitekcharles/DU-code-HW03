@@ -27,13 +27,33 @@
                 passwordChar.push(arr[Math.floor(Math.random() * (arr.length))])
             }
         }
-        
+
         while (x < 1) {
             var totalChar = parseInt(prompt("How many characters long do you want your password to be?(chose a number between 8 and 128"))
             if ((totalChar >= 8) && (totalChar <= 128)) {
                 x = 1
             } else {
                 alert("Chosen number is outside of the acceptable range, hit ok to try again!")
+            }
+        }
+
+        while (numSelect === 0) {
+            alert("If you do not select at least 1 character type you will be forced to go back through the choices until you select at least 1")
+            var lower = confirm("Do you want to include lower case characters?")
+            if(lower === true){
+                numSelect++
+            }
+            var upper = confirm("Do you want to include upper case characters?")
+            if(upper === true){
+                numSelect++
+            }
+            var num = confirm("Do you want to include number characters?")
+            if(num === true){
+                numSelect++
+            }
+            var spc = confirm("Do you want to include special characters?")
+            if(spc === true){
+                numSelect++
             }
         }
     </script>
