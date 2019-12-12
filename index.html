@@ -56,6 +56,46 @@
                 numSelect++
             }
         }
+
+        if (lower === true) {
+                numLower = Math.ceil(totalChar / numSelect)
+                console.log(numLower)
+                if (upper === true) {
+                    numUpper = Math.floor(totalChar / numSelect)
+                    if (num === true) {
+                        numNum = Math.ceil(totalChar / numSelect)
+                        if (spc === true) {
+                            numSpc = Math.ceil(totalChar / numSelect)
+                        } 
+                    } else if (spc === true) {
+                        numSpc = Math.ceil(totalChar / numSelect)
+                    } 
+                } else if (num === true) {
+                    numNum = Math.floor(totalChar / numSelect)
+                    if (spc === true) {
+                        numSpc = Math.ceil(totalChar / numSelect)
+                    }
+                } else if (spc === true) {
+                    numSpc = Math.floor(totalChar / numSelect)
+                } else {}
+            } else if (upper === true) {
+                numUpper = Math.ceil(totalChar / numSelect)
+                if (num === true) {
+                    numNum = Math.floor(totalChar / numSelect)
+                    if (spc === true) {
+                        numSpc = Math.ceil(totalChar / numSelect)
+                    }
+                } else if (spc === true) {
+                    numSpc = Math.floor(totalChar / numSelect)
+                }
+            } else if (num === true) {
+                numNum = Math.ceil(totalChar / numSelect)
+                if (spc === true) {
+                    numSpc = Math.floor(totalChar / numSelect)
+                }
+            } else {
+                numSpc = Math.ceil(totalChar / numSelect)
+            } 
     </script>
 </body>
 </html>
