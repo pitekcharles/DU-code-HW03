@@ -57,6 +57,12 @@
             }
         }
 
+        //-----------------------------------------------------------------------------------------------------------
+        // THIS SECTION!!! trying to  set up distribution of characters of each type. 
+        //program will generate the password but sometimes adds extra characters so input was 13 
+        //printed password will be 15 characters long. will still be playing with this will likely need to be changed
+        // ----------------------------------------------------------------------------------------------------------
+
         if (lower === true) {
                 numLower = Math.ceil(totalChar / numSelect)
                 console.log(numLower)
@@ -96,6 +102,11 @@
             } else {
                 numSpc = Math.ceil(totalChar / numSelect)
             } 
+
+            pullCharArr(numLower, lowerChar)
+            pullCharArr(numUpper, upperChar)
+            pullCharArr(numNum, numChar)
+            pullCharArr(numSpc, spcChar)
     </script>
 </body>
 </html>
