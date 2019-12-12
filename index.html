@@ -107,6 +107,13 @@
             pullCharArr(numUpper, upperChar)
             pullCharArr(numNum, numChar)
             pullCharArr(numSpc, spcChar)
+
+            for(let i = (passwordChar.length - 1); i > 0; i--) {
+			    const j = Math.floor(Math.random() * i)
+			    const temp = passwordChar[i]
+			    passwordChar[i] = passwordChar[j]
+			    passwordChar[j] = temp
+		    }
     </script>
 </body>
 </html>
