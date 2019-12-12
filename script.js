@@ -1,3 +1,5 @@
+var password = ""
+var generate = document.getElementById("generate")
 function passwordGenerator() {
 
     var lowerChar = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
@@ -8,7 +10,7 @@ function passwordGenerator() {
     var x = 0
     var numSelect = 0
     var passwordChar = []
-    var password = ""
+    var passwordTrans = document.getElementById("password");
     
     function pullCharArr(num, arr) {
         for (var i = 0; i < num; i++) {
@@ -198,6 +200,12 @@ function passwordGenerator() {
     for (var i = 0; i < passwordChar.length; i++) {
         password = password + passwordChar[i]
     }
+
+    passwordTrans.textContent = password;
+    //add print out to html for final password!!!
     
-    alert("Your password is: " + password + "    Password length: " + passwordChar.length)
+    // alert("Your password is: " + password + "    Password length: " + passwordChar.length)
 }
+
+
+generate.addEventListener("click", passwordGenerator);
