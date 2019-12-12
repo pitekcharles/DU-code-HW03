@@ -21,6 +21,12 @@
         var numUpper
         var numSpc
         var numNum
+
+        function pullCharArr(num, arr) {
+            for (var i = 0; i < num; i++) {
+                passwordChar.push(arr[Math.floor(Math.random() * (arr.length))])
+            }
+        }
     </script>
 </body>
 </html>
